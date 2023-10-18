@@ -6,7 +6,7 @@ const Header = () => {
   let colour='blue'
 
   const change=()=>{
-    colour='red'
+    colour='black'
     console.log(colour)
   }
 
