@@ -12,7 +12,7 @@ const Header = () => {
 
   const ChangeQuantity =(id)=>{
   const NewItem=items.map((item)=>
-    item.id===id?{...item,qty:item.qty+1}:item
+    item.id===id?{...item,qty:item.qty+2}:item
   )
   setItem(NewItem)
   }
