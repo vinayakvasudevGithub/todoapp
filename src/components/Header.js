@@ -1,31 +1,48 @@
 import React, { useState } from 'react'
+import {PhonesData} from './PhonesData'
 import {Button,Table,Card,Accordion,Navbar,Nav,Container} from 'react-bootstrap';
 
-const products=[
-  {id:1,name:"laptop",brand:"hp",qty:1},
-  {id:2,name:"laptop",brand:"dell",qty:1},
-  {id:3,name:"laptop",brand:"apple",qty:1}
-]
-
 const Header = () => {
-  const [items,setItem]=useState(products)
 
-  const ChangeQuantity =(id)=>{
-  const NewItem=items.map((item)=>
-    item.id===id?{...item,qty:item.qty+2}:item
-  )
-  setItem(NewItem)
+  const [items,setItems]=useState(PhonesData)
+
+  const decrease =(id)=>{
+    const NewItem=items.map((item)=>
+    item.id === id && item.qty>1 ?{...item,qty : item.qty-1}:item
+    )
+    setItems(NewItem)
   }
+
+  const increase=(id)=>{
+    const NewItem=items.map((item)=>
+    item.id === id && item.qty<10 ?{...item,qty:item.qty+1}:item
+    )
+    setItems(NewItem)
+  }
+
   return (
+    
     <div>
-      {items.map((product)=>(
-        <div  key={product.id}>
-          <h1>{product.name}</h1>
-          <h3>brand : {product.brand}</h3>
-          <h4>qty : {product.qty}</h4>
-          <button onClick={()=>ChangeQuantity(product.id)}>+</button>
-        </div>
+      <h1>Products</h1>
+      {items.map((item)=>(
+        <div key={item.id}>
+        <Card style={{ width: '18rem' }}>
+        <Card.Img variant="top" src={require(`./asset/${item.image}.webp`)} />
+        <Card.Body>
+          <Card.Title>{item.model}</Card.Title>
+          <Card.Text>
+            <h3>{item.des}</h3>
+            <h2>price :{item.price}</h2>
+            <p>
+              Quantity:<Button onClick={()=>decrease(item.id)}>-</Button>{item.qty}<Button onClick={()=>increase(item.id)}>+</Button>
+            </p>
+          </Card.Text>
+          <Button variant="primary">Add to cart</Button>
+        </Card.Body>
+      </Card>
+      </div>
       ))}
+      
     </div>
   )
 }
