@@ -7,7 +7,7 @@ const Header = () => {
 
     <div>
       <h1>{counter}</h1>
-      <button onClick={()=>setCounter(counter+6)}>count+</button>
+      <button onClick={()=>setCounter(counter+7)}>count+</button>
     </div>
   )
 }
