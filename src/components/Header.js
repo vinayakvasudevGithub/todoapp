@@ -15,6 +15,7 @@ const Header = () => {
       <h1>fetch Appi data</h1>
       {posts.map((post)=>
       <div key={post.id}>
+        {/* 06/10 */}
         <h1>{post.title}</h1> 
         <p>{post.body}</p>  
         </div>     
